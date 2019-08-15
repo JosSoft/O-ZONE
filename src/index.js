@@ -162,21 +162,17 @@ function actionPage() {
 
     function allFilters() {
         cards.forEach((card) => {
-            let res = ['',''];
+            let res = ['','']; //по умолчанию все показываем
 
-            if (discountCheckbox.checked) { if (!card.querySelector('.card-sale')) { res[0] = 'none'; }
-            } else { res[0] = ''; }
+            if (discountCheckbox.checked) { if (!card.querySelector('.card-sale')) { res[0] = 'none'; }} 
             
             const cardPrice = card.querySelector('.card-price'); 
             const price = parseFloat(cardPrice.textContent);
-
-            if ((min.value && price < min.value) || (max.value && price > max.value)) { res[1] = 'none'; 
-            } else { res[1] = ''; }
+            if ((min.value && price < min.value) || (max.value && price > max.value)) { res[1] = 'none'; } 
             
-            //console.log(res);
             if (res[0] == res[1])  { 
-                card.parentNode.style.display = res[0]; 
-            } else {
+                card.parentNode.style.display = res[0]; // или оба фильтра совпадают, или обе нет
+            } else { // 1 из условий не выполняются, значит не показываем
                 card.parentNode.style.display = 'none'; 
             }
         });
