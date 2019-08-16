@@ -257,6 +257,7 @@ function catalog() {
                     } else { 
                         card.parentNode.style.display = 'none'; 
                     }
+                
                 }
             });
         });    
@@ -274,5 +275,12 @@ getData().then(data => {
     renderCatalog();
 
     catalog();
+})
+.catch(err => {
+    console.warn(err);
+    document.querySelector('.goods').innerHTML = `
+        <div style="color:red; font-size:30px">
+            Упс, что-то пошло не так
+        </div>';
+    `;
 });
-
